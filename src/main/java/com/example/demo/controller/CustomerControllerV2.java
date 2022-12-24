@@ -5,22 +5,24 @@ import com.example.demo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
-@RequestMapping("api/v1/customer")
+@RequestMapping("api/v2/customer")
 @RestController
-@Deprecated
-public class CustomerController {
+public class CustomerControllerV2 {
     private final CustomerService customerService;
 
     @Autowired
-    CustomerController(CustomerService customerService) {
+    CustomerControllerV2(CustomerService customerService) {
        this.customerService = customerService;
     }
 
     @GetMapping(value = "all")
     List<Customer> getCustomer(){
-        return customerService.getCustomer();
+        return Arrays.asList(
+                new Customer(0L, "v2", "v2")
+        );
     }
 
     @PostMapping(value = "all")
