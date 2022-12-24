@@ -1,14 +1,22 @@
 package com.example.demo.data.models;
 
-public class Customer {
-    private  Long id;
-    private String name;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Customer(Long id, String name){
+public class Customer {
+    private final Long id;
+    private final String name;
+
+    @JsonIgnore
+    private final String password;
+
+    public Customer(Long id, String name, String password){
         this.id = id;
         this.name = name;
+        this.password = password;
     }
 
+    @JsonProperty("customerId")
     public Long getId() {
         return id;
     }
@@ -17,11 +25,16 @@ public class Customer {
         return name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
